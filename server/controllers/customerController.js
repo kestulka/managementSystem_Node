@@ -60,3 +60,26 @@ exports.postCustomer = async (req, res) => {
     console.log(error);
   }
 };
+
+/**
+ * GET /
+ * Customer Data
+ */
+
+exports.view = async (req, res) => {
+  try {
+    const customer = await Customer.findOne({ _id: req.params.id });
+
+    const locals = {
+      title: "View Customers Data",
+      description: "NodeJs management system",
+    };
+
+    res.render("customer/view", {
+      locals,
+      customer,
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
