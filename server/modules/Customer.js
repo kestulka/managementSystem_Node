@@ -2,11 +2,11 @@ const mongoose = require("mongoose");
 
 const Schema = mongoose.Schema;
 const CustomerSchema = new Schema({
-  firstname: {
+  firstName: {
     type: String,
     required: true,
   },
-  lastname: {
+  lastName: {
     type: String,
     reqiured: true,
   },
@@ -20,11 +20,11 @@ const CustomerSchema = new Schema({
   },
   createdAt: {
     type: Date,
-    required: true,
+    default: Date.now(),
   },
   updatedAt: {
     type: Date,
-    required: true,
+    default: Date.now(),
   },
 });
 

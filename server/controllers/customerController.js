@@ -1,15 +1,20 @@
+const Customer = require("../modules/Customer");
+const mongoose = require("mongoose");
+
 /**
  * GET /
  * Homepage
  */
 
 exports.homepage = async (req, res) => {
+  const messages = await req.flash("info");
+
   const locals = {
     title: "NodeJs",
     description: "NodeJs management system",
   };
 
-  res.render("index", locals);
+  res.render("index", { locals, messages });
 };
 
 /**
@@ -34,10 +39,19 @@ exports.addCustomer = async (req, res) => {
 exports.postCustomer = async (req, res) => {
   console.log(req.body);
 
-  const locals = {
-    title: "New Customer added",
-    description: "NodeJs management system",
-  };
+  const newCustomer = new Customer({
+    firstName: req.body.firstName,
+    lastName: req.body.lastName,
+    details: req.body.details,
+    phone: req.body.phone,
+    email: req.body.email,
+  });
 
-  res.render("customer/add", locals);
+  try {
+    await Customer.create(newCustomer);
+    await req.flash("info", "New customer have been added");
+    res.redirect("/");
+  } catch (error) {
+    console.log(error);
+  }
 };
