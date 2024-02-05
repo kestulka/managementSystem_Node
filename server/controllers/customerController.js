@@ -14,7 +14,12 @@ exports.homepage = async (req, res) => {
     description: "NodeJs management system",
   };
 
-  res.render("index", { locals, messages });
+  try {
+    const customers = await Customer.find({}).limit(10);
+    res.render("index", { locals, messages, customers });
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 /**
