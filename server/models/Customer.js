@@ -8,7 +8,7 @@ const CustomerSchema = new Schema({
   },
   lastName: {
     type: String,
-    reqiured: true,
+    required: true,
   },
   phone: {
     type: String,

@@ -1,4 +1,4 @@
-const Customer = require("../modules/Customer");
+const Customer = require("../models/Customer");
 const mongoose = require("mongoose");
 
 /**
@@ -15,7 +15,7 @@ exports.homepage = async (req, res) => {
   };
 
   try {
-    const customers = await Customer.find({}).limit(10);
+    const customers = await Customer.find({}).limit(50);
     res.render("index", { locals, messages, customers });
   } catch (error) {
     console.log(error);
@@ -47,9 +47,9 @@ exports.postCustomer = async (req, res) => {
   const newCustomer = new Customer({
     firstName: req.body.firstName,
     lastName: req.body.lastName,
-    details: req.body.details,
     phone: req.body.phone,
     email: req.body.email,
+    details: req.body.details,
   });
 
   try {

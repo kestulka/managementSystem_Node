@@ -27,8 +27,8 @@
       <tr>
         <th scope="col">First name</th>
         <th scope="col">Last name</th>
-        <th scope="col">Phone</th>
         <th scope="col">Email</th>
+        <th scope="col">Phone</th>
         <th scope="col" class="text-end">Action</th>
       </tr>
     </thead>
@@ -38,9 +38,8 @@
       <tr class="align-middle">
         <td><%= element.firstName %></td>
         <td><%= element.lastName %></td>
-        <!-- ! BUG, last name is not showing in dashboard -->
-        <td><%= element.phone %></td>
         <td><%= element.email %></td>
+        <td><%= element.phone %></td>
         <td class="text-end">
           <div class="d-flex flex-row justify-content-end gap-2">
             <a
@@ -60,7 +59,7 @@
             </a>
 
             <form
-              action="/edit/<<%= element._id %>?_method=DELETE"
+              action="/delete/<%= element._id %>?_method=DELETE"
               method="POST"
               class="position-relative"
             >
